@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vizee Charts</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Polyfills only needed for Edge. -->
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  </head>  
+<body>
+  
+<!--   <sm-chart>
+    <h2 slot="legend">Donut Chart</h2>
+    <pie-plot slot="plot" width="250" height="250" data="[70]">
+      <pie-label x="0" y="0 ">70</pie-label>
+    </pie-plot>
+  </sm-chart>
+   -->
+  <vz-chart width="800" height="250" margins="15 10 25 42" data="[]">
+    <h2 slot="legend">Line Chart</h2>
+    <xy-plot slot="plot">
+      <left-axis scale="linear" vector="value"></left-axis>
+      <bottom-axis scale="time" vector="date"></bottom-axis>
+      <trend-line x="date" y="value" ></trend-line>
+    </xy-plot>
+  </sm-chart>
+  
+  
+  <script type="module">
+    import { XAxis, Chart, YAxis, XYPlot, TrendLine } from './src/components/index.js'    
+    const data = [{value: 95, date: '8/12/15'},
+                  {value: 100, date: '9/12/15'}, 
+                  {value: 50, date: '10/12/15'}, 
+                  {value: 75, date: '11/12/15'}]
+    
+    document.querySelector('vz-chart').setAttribute('data', JSON.stringify(data))
+    
+    customElements.define('vz-chart', Chart) 
+    customElements.define('xy-plot', XYPlot)
+    customElements.define('trend-line', TrendLine)
+    customElements.define('left-axis', YAxis)
+    customElements.define('bottom-axis', XAxis)
+    // customElements.define('pie-plot', PiePlot)
+    // customElements.define('pie-label', PieLabel)
+    // customElements.define('sm-lines', Lines)
+
+    
+  </script>
+</body>
+</html>
